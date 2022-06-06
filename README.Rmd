@@ -209,7 +209,8 @@ ggplot(resEffortWide, aes(x = `SPEEDEFFORT0-15`, y = as.numeric(SUCCESS))) +
   scale_x_continuous("Korrigált sebesség a 15 km-es ellenőrzőpontig [km-effort/h]",
                      sec.axis = sec_axis(~ . /(1 + 7.05/14.13),
                                          name = "Sebesség a 15 km-es ellenőrzőpontig [km/h]")) +
-  scale_y_continuous(labels = scales::percent) + labs(y = "Sikeres teljesítés valószínűsége")
+  scale_y_continuous(labels = scales::percent) +
+  labs(y = "Sikeres teljesítés valószínűsége [%]")
 ```
 
 A dolog egyfelől logikus, de talán azért kicsit meglepő is. Logikus, mert azt látjuk, hogy aki gyorsabban ment, az nagyobb valószínűséggel teljesítette sikeresen a túrát. (Mindazonáltal ez az effektus csak egy pontig érvényesül: nagyjából 9 km-effort/h, avagy -- itt -- 6 km/h felett már szinte mindenki sikeresen célba ért, aki ilyen tempóban tudta le az első szakaszt.) Másrészt azt látjuk, hogy aki -- szokásos sebességben -- 4 km/h-t produkált, annak nagyon rosszak voltak az esélyei (ez pláne meglepő lehet, ha figyelembe vesszük, hogy 4,1 km/h elvileg elég lenne a sikeres teljesítéshez!), még a jó túra-tempónak számító 5 km/h mellett is érdemi esélye volt a feladásnak. Mivel az első szakaszban relatíve sok szint van, így km-effort/h-ban még drámaibb a helyzet (úgy is fogalmazhattunk volna, hogy ilyen terepen az 5 km/h nem egyszerűen jó, hanem kimondottan jó turista tempó). A meglepetésre akkor kapjuk meg a magyarázatot, ha összerakjuk ezt a megfigyelést a korábban szerzett tudásunkkal: a lassulás a probléma. Igen, *elvileg* a 4,1 is elég lenne, *de* akkor nem szabadna lassulni, erre viszont, mint láttuk, szinte senki nem volt képes. Ha azonban ezzel is számolunk, akkor egyszerűen muszáj gyorsabban indulni, mégpedig lényegesen, hogy még a lassulással együtt is beleférjen az ember a szintidőbe.

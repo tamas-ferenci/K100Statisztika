@@ -415,7 +415,8 @@ ggplot(resEffortWide, aes(x = `SPEEDEFFORT0-15`, y = as.numeric(SUCCESS))) +
   scale_x_continuous("Korrigált sebesség a 15 km-es ellenőrzőpontig [km-effort/h]",
                      sec.axis = sec_axis(~ . /(1 + 7.05/14.13),
                                          name = "Sebesség a 15 km-es ellenőrzőpontig [km/h]")) +
-  scale_y_continuous(labels = scales::percent) + labs(y = "Sikeres teljesítés valószínűsége")
+  scale_y_continuous(labels = scales::percent) +
+  labs(y = "Sikeres teljesítés valószínűsége [%]")
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
