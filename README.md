@@ -103,8 +103,8 @@ jobb címkékkel:
 
 ``` r
 res <- merge(res, data.table(KM = c(0, 15, 25, 40, 45, 50, 70, 80, 90, 100),
-                             KMTEXT = c("0", "0-15", "15-25", "25-40", "40-45", "45-50",
-                                        "50-70", "70-80", "80-90", "90-100")),
+                             KMTEXT = ordered(c("0", "0-15", "15-25", "25-40", "40-45",
+                                                "45-50", "50-70", "70-80", "80-90", "90-100"))),
              sort = FALSE)
 ```
 
@@ -153,15 +153,14 @@ rajtidőpont sem – sejthetőleg ezek a túrázók el sem indultak). Az ilyen
 értelemben tényleges indulók száma 1202, közülük 993 teljesítette
 sikeresen a 2022-es Kinizsi 100-at; ez 82.6%-os arány.
 
-Érdekes megnézni, hogy a túrát feladók hol szálltak ki. Az alábbi ábrán
-a kilométerek az utolsó ellenőrzőpontot jelentik, ahol még sikeresen
-áthaladt az adott túrázó, magyarán a kiszállás igazából ezen
-ellenőrzőpont után (de még a következő előtt) történt:
+Érdekes megnézni, hogy a túrát feladók hol szálltak ki! Az alábbi ábra
+mutatja az egyes szakaszokon a túrát feladók számát (tehát ennyien
+haladtak át időben a szakasz kezdőellenőrzőpontján, de nem a zárón):
 
 ``` r
-ggplot(data.table(table(res[, .(max(KM)), .(ID)][V1!=100]$V1)), aes(x = V1, y = N)) +
-  geom_bar(stat = "identity") +
-  labs(x = "Utolsó teljesített ellenőrzőállomás", y = "Feladók száma [fő]")
+ggplot(data.table(table(res[, .(levels(res$KMTEXT)[which(levels(res$KMTEXT)==max(KMTEXT))+1]), .(ID)]$V1)),
+       aes(x = V1, y = N)) + geom_bar(stat = "identity") +
+  labs(x = "Szakasz", y = "Feladók száma [fő]")
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
@@ -177,8 +176,8 @@ valahol a görbe, annál gyakoribb az olyan sebesség körüli teljesítés:
 
 ``` r
 ggplot(res, aes(x = SPEED, group = KMTEXT, color = KMTEXT)) + geom_density() +
-  labs(x = "Sebesség [km/h]", y = "", color = "Szakasz [km]") +
-  scale_y_continuous(labels = NULL, breaks = NULL)
+  labs(x = "Sebesség [km/h]", y = "", color = "Szakasz") +
+  scale_y_continuous(labels = NULL, breaks = NULL) + scale_color_discrete()
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
