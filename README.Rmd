@@ -1,6 +1,7 @@
 ---
 title: "A 2022-es Kinizsi 100 adatainak elemzése"
-author: "Ferenci Tamás"
+author:
+  - Ferenci Tamás (tamas.ferenci@medstat.hu)
 output: github_document
 ---
 

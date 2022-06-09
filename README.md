@@ -1,6 +1,6 @@
 A 2022-es Kinizsi 100 adatainak elemzése
 ================
-Ferenci Tamás
+Ferenci Tamás (<tamas.ferenci@medstat.hu>)
 
 ## Bevezető gondolatok
 
