@@ -1,6 +1,6 @@
 A 2022-es Kinizsi 100 adatainak elemzése
 ================
-Ferenci Tamás (<tamas.ferenci@medstat.hu>)
+Ferenci Tamás (<https://www.medstat.hu/>)
 
 ## Bevezető gondolatok
 
@@ -16,12 +16,15 @@ változások vannak bizonyos években, de alapvetően budapesti indulás után
 indulókat online is nyomon lehetett követni: minden ellenőrzőpont
 érintésekor felkerült az áthaladás ideje egy bárki számára megtekinthető
 weboldalra (a séma: szazas.kinizsi.org/RSZ, ahol az RSZ helyébe a túrázó
-rajtszámát kell írni, vezető nullák nélkül; például a jelen sorok
-szerzőjének lapja: <https://szazas.kinizsi.org/125>). Az időpontokból
-rekonstruálható minden túrázó sebessége, így – mivel az adatok gépi úton
-könnyen letölthetőek az összes indulóra – összeállíthatunk néhány
-elemzést arra vonatkozóan, hogy összességében hogyan haladtak végig a
-túrázók az úton.
+rajtszámát kell írni, vezető nullák nélkül). Például a jelen sorok
+szerzőjének lapja menet közben egy ponton így nézett ki:
+
+![A 125-ös rajtszám adatai menet közben](K100-2022-125.png)
+
+Az időpontokból rekonstruálható minden túrázó sebessége, így – mivel az
+adatok gépi úton könnyen letölthetőek az összes indulóra –
+összeállíthatunk néhány elemzést arra vonatkozóan, hogy összességében
+hogyan haladtak végig a túrázók az úton.
 
 ## Technikai részletek: az adatok letöltése és feldolgozása
 
@@ -465,9 +468,9 @@ hogy megengedjem a sebesség esetleges nemlineáris hatását.)
 
 ## Továbbfejlesztési ötletek
 
--   Fejlettebb szint-figyelembevételi módszerek használata (pl.
-    Tobler-szabály és társai).
--   Lehet-e a sebesség-görbéket valamilyen módon értelmesen
-    csoportosítani (pl. klaszterezés, PCA)?
--   Elgondolkodni a több szakasz sebességének felhasználásán a
-    sikeresség előrejelzésében.
+- Fejlettebb szint-figyelembevételi módszerek használata (pl.
+  Tobler-szabály és társai).
+- Lehet-e a sebesség-görbéket valamilyen módon értelmesen csoportosítani
+  (pl. klaszterezés, PCA)?
+- Elgondolkodni a több szakasz sebességének felhasználásán a sikeresség
+  előrejelzésében.

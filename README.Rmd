@@ -1,7 +1,7 @@
 ---
 title: "A 2022-es Kinizsi 100 adatainak elemzése"
 author:
-  - Ferenci Tamás (tamas.ferenci@medstat.hu)
+  - Ferenci Tamás (https://www.medstat.hu/)
 output: github_document
 ---
 
@@ -13,7 +13,11 @@ knitr::opts_chunk$set(echo = TRUE, fig.width = 12, dpi = 300)
 
 A Kinizsi 100 Magyarország legnagyobb hagyományú -- és egyik legkeményebb -- teljesítménytúrája. A feladat egyszerű: 100 km, 24 óra (és nagyjából 3200 méter összesített szintemelkedés). Az útvonalban néha apróbb változások vannak bizonyos években, de alapvetően budapesti indulás után átkel a Pilisen majd a Gerecsén. Számos további információ érhető el a [túra honlapján](http://kinizsi.org/kinizsi-szazas/) és a [Wikipedián](https://hu.wikipedia.org/wiki/Kinizsi_Sz%C3%A1zas).
 
-2022-ben került megrendezésre a 40. alkalommal a túra. Ebben az évben az indulókat online is nyomon lehetett követni: minden ellenőrzőpont érintésekor felkerült az áthaladás ideje egy bárki számára megtekinthető weboldalra (a séma: szazas.kinizsi.org/RSZ, ahol az RSZ helyébe a túrázó rajtszámát kell írni, vezető nullák nélkül; például a jelen sorok szerzőjének lapja: [https://szazas.kinizsi.org/125](https://szazas.kinizsi.org/125)). Az időpontokból rekonstruálható minden túrázó sebessége, így -- mivel az adatok gépi úton könnyen letölthetőek az összes indulóra -- összeállíthatunk néhány elemzést arra vonatkozóan, hogy összességében hogyan haladtak végig a túrázók az úton.
+2022-ben került megrendezésre a 40. alkalommal a túra. Ebben az évben az indulókat online is nyomon lehetett követni: minden ellenőrzőpont érintésekor felkerült az áthaladás ideje egy bárki számára megtekinthető weboldalra (a séma: szazas.kinizsi.org/RSZ, ahol az RSZ helyébe a túrázó rajtszámát kell írni, vezető nullák nélkül). Például a jelen sorok szerzőjének lapja menet közben egy ponton így nézett ki:
+
+![A 125-ös rajtszám adatai menet közben](K100-2022-125.png)
+
+Az időpontokból rekonstruálható minden túrázó sebessége, így -- mivel az adatok gépi úton könnyen letölthetőek az összes indulóra -- összeállíthatunk néhány elemzést arra vonatkozóan, hogy összességében hogyan haladtak végig a túrázók az úton.
 
 ## Technikai részletek: az adatok letöltése és feldolgozása
 
