@@ -111,8 +111,8 @@ jobb címkékkel:
 
 ``` r
 res <- merge(res, data.table(KM = c(0, 15, 25, 40, 45, 50, 70, 80, 90, 100),
-                             KMTEXT = ordered(c("0", "0-15", "15-25", "25-40", "40-45",
-                                                "45-50", "50-70", "70-80", "80-90", "90-100"))),
+                             KMTEXT = factor(c("0", "0-15", "15-25", "25-40", "40-45",
+                                               "45-50", "50-70", "70-80", "80-90", "90-100"))),
              sort = FALSE)
 ```
 
@@ -173,9 +173,9 @@ mutatja az egyes szakaszokon a túrát feladók számát (tehát ennyien
 haladtak át időben a szakasz kezdőellenőrzőpontján, de nem a zárón):
 
 ``` r
-ggplot(data.table(table(res[, .(levels(res$KMTEXT)[which(levels(res$KMTEXT)==max(KMTEXT))+1]), .(ID)]$V1)),
-       aes(x = V1, y = N)) + geom_bar(stat = "identity") +
-  labs(x = "Szakasz", y = "Feladók száma [fő]")
+ggplot(merge(res[,.(KM = max(KM)) , .(ID)][KM<100], unique(res[, .(KM, KMTEXT)])[order(KM)][
+  ,.(KM = KM[KM!=100], KMTEXT = KMTEXT[-1])])[, .N , .(KMTEXT)],
+  aes(x = KMTEXT, y = N)) + geom_bar(stat = "identity") + labs(x = "Szakasz", y = "Feladók száma [fő]")
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
@@ -353,7 +353,7 @@ volt a két szakaszon a sebesség):
 ggplot(resEffortWide, aes(x = `SPEEDEFFORT0-15`, y = `SPEEDEFFORT15-25`)) + geom_jitter() +
   labs(x = "Korrigált sebesség a 15 km-es ellenőrzőpontig [km-effort/h]",
        y = "Korrigált sebesség a 15 és 25 km-es\nellenőrzőpont között [km-effort/h]") +
-   geom_abline(color = "red")
+  geom_abline(color = "red")
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
