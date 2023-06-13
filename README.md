@@ -19,7 +19,12 @@ weboldalra (a séma: szazas.kinizsi.org/RSZ, ahol az RSZ helyébe a túrázó
 rajtszámát kell írni, vezető nullák nélkül). Például a jelen sorok
 szerzőjének lapja menet közben egy ponton így nézett ki:
 
-![A 125-ös rajtszám adatai menet közben](K100-2022-125.png)
+<figure>
+<img src="K100-2022-125.png"
+alt="A 125-ös rajtszám adatai menet közben" />
+<figcaption aria-hidden="true">A 125-ös rajtszám adatai menet
+közben</figcaption>
+</figure>
 
 Az időpontokból rekonstruálható minden túrázó sebessége, így – mivel az
 adatok gépi úton könnyen letölthetőek az összes indulóra –
@@ -129,6 +134,13 @@ km-es bejegyzés.
 res <- merge(res, res[, .(SUCCESS = 100%in%KM), .(ID)], sort = FALSE)
 ```
 
+Végezetül kimentjük a feldolgozott adatokat is:
+
+``` r
+res$YEAR <- 2022
+saveRDS(res, "K100res-proc-2022.rds")
+```
+
 Itt érdemes megjegyezni, hogy a célidő nincs feltüntetve a weboldalon.
 Ennek hivatalos magyarázata nem érhető el az oldalon, de elég
 egyértelműnek tűnik, hogy ebben is az a szervezők által konzekvensen
@@ -166,7 +178,7 @@ ggplot(data.table(table(res[, .(levels(res$KMTEXT)[which(levels(res$KMTEXT)==max
   labs(x = "Szakasz", y = "Feladók száma [fő]")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 ## Sebesség alakulása a túra alatt
 
@@ -183,7 +195,7 @@ ggplot(res, aes(x = SPEED, group = KMTEXT, color = KMTEXT)) + geom_density() +
   scale_y_continuous(labels = NULL, breaks = NULL) + scale_color_discrete()
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
 
 Látszik tehát, hogy a leggyorsabb szakasz a rajt és a 15-ös pont
 közötti, illetve a 15 és 25 közötti volt, onnan nagyjából folyamatos a
@@ -213,7 +225,7 @@ ggplot(res[, .(SPEED = median(SPEED)) , .(TRUEKM)], aes(x = TRUEKM, y = SPEED)) 
   labs(x = "Táv [km]", y = "Sebesség [km/h]")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
 
 Lényegében a vonalkák sűrűsége mutatja azt, amit az előző ábrán az
 jelzett, hogy milyen magasan futott a görbe: ahol sok vonalka fut, az a
@@ -284,7 +296,7 @@ ggplot(res[, .(SPEEDEFFORT = median(SPEEDEFFORT)) , .(TRUEKM)], aes(x = TRUEKM, 
   labs(x = "Táv [km]", y = "Korrigált sebesség [km-effort/h]")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
 
 Gyönyörűen látszik, hogy egy furcsaságot azonnal eltüntettünk: az
 eredeti ábrán az első szakasz után gyorsulás történt, holott valójában
@@ -316,7 +328,7 @@ ggplot(melt(linfit, id.vars = "ID"), aes(x = value)) +
   labs(x = "", y = "Gyakoriság [fő]")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
 
 Jól látszik a kezdőérték eloszlása, és az, hogy az abszolút túlnyomó
 többségnek tényleg csökkenő trendet mutatott a (korrigált) sebessége a
@@ -344,7 +356,7 @@ ggplot(resEffortWide, aes(x = `SPEEDEFFORT0-15`, y = `SPEEDEFFORT15-25`)) + geom
    geom_abline(color = "red")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
 
 Jól látszik, hogy a két szakaszon mért sebesség között nagyon szoros,
 pozitív – és szinte lineáris – volt a kapcsolat: aki az egyiken gyorsabb
@@ -379,7 +391,7 @@ GGally::ggpairs(resEffortWide[, -c("ID", "SUCCESS")],
                 upper = list(continuous = GGally::wrap(GGally::ggally_cor, stars = FALSE)))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
 
 Az ábrát a következőképp kell értelmezni. Minden sor és oszlop egy
 szakaszon mért sebesség. A főátlóban a kérdés szakasz sebességének az
@@ -421,7 +433,7 @@ ggplot(resEffortWide, aes(x = `SPEEDEFFORT0-15`, y = as.numeric(SUCCESS))) +
   labs(y = "Sikeres teljesítés valószínűsége [%]")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
 
 A dolog egyfelől logikus, de talán azért kicsit meglepő is. Logikus,
 mert azt látjuk, hogy aki gyorsabban ment, az nagyobb valószínűséggel

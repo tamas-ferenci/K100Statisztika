@@ -93,6 +93,13 @@ Mentsük el azt is, hogy ki volt sikeres teljesítő: az, akinél van 100 km-es 
 res <- merge(res, res[, .(SUCCESS = 100%in%KM), .(ID)], sort = FALSE)
 ```
 
+Végezetül kimentjük a feldolgozott adatokat is:
+
+```{r}
+res$YEAR <- 2022
+saveRDS(res, "K100res-proc-2022.rds")
+```
+
 Itt érdemes megjegyezni, hogy a célidő nincs feltüntetve a weboldalon. Ennek hivatalos magyarázata nem érhető el az oldalon, de elég egyértelműnek tűnik, hogy ebben is az a szervezők által konzekvensen képviselt meggyőződés tükröződik, miszerint a teljesítménytúra nem verseny: egyedül az számít, hogy valaki szintidőn belül beér-e, de ha igen, akkor nem számít, hogy milyen gyorsan.
 
 Ezek az adatok most, úgy szokták mondani: 'long' formátumban vannak (ugyanazon alany különböző adatai egy oszlopban, egymás alatt, egy másik oszlopban lévő változóval megkülönböztetve). Bizonyos elemzésekhez jól jöhet a 'wide' formátum is (különböző adatok különböző oszlopokban); gyártsuk le ezt is:
